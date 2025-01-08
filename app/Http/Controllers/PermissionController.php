@@ -12,10 +12,10 @@ class PermissionController extends Controller implements HasMiddleware
     public static function middleware()
     {
         return [
-            new Middleware('permission:permissions-data', only: ['index']),
-            new Middleware('permission:permissions-create', only: ['create', 'store']),
-            new Middleware('permission:permissions-update', only: ['edit', 'update']),
-            new Middleware('permission:permissions-delete', only: ['destroy']),
+            new Middleware('permission:permissions index', only: ['index']),
+            new Middleware('permission:permissions create', only: ['create', 'store']),
+            new Middleware('permission:permissions edit', only: ['edit', 'update']),
+            new Middleware('permission:permissions delete', only: ['destroy']),
         ];
     }
 
@@ -31,7 +31,7 @@ class PermissionController extends Controller implements HasMiddleware
             ->paginate(6)->withQueryString();
 
         // render view
-        return inertia('Permissions/Index', ['permissions' => $permissions]);
+        return inertia('Permissions/Index', ['permissions' => $permissions,'filters' => $request->only(['search'])]);
     }
 
     /**

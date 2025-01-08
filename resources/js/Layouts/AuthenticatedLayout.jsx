@@ -39,6 +39,22 @@ export default function AuthenticatedLayout({ header, children }) {
                                         Permissions
                                     </NavLink>
                                 )}
+                                {hasAnyPermission(["roles index"]) && (
+                                    <NavLink
+                                        href={route("roles.index")}
+                                        active={route().current("roles*")}
+                                    >
+                                        Roles
+                                    </NavLink>
+                                )}
+                                {hasAnyPermission(["users index"]) && (
+                                    <NavLink
+                                        href={route("users.index")}
+                                        active={route().current("users*")}
+                                    >
+                                        Users
+                                    </NavLink>
+                                )}
                             </div>
                         </div>
 
@@ -149,6 +165,24 @@ export default function AuthenticatedLayout({ header, children }) {
                                 active={route().current("permissions*")}
                             >
                                 Permissions
+                            </ResponsiveNavLink>
+                        )}
+
+                        {hasAnyPermission(["roles index"]) && (
+                            <ResponsiveNavLink
+                                href={route("roles.index")}
+                                active={route().current("roles*")}
+                            >
+                                Roles
+                            </ResponsiveNavLink>
+                        )}
+
+                        {hasAnyPermission(["users index"]) && (
+                            <ResponsiveNavLink
+                                href={route("users.index")}
+                                active={route().current("users*")}
+                            >
+                                Users
                             </ResponsiveNavLink>
                         )}
                     </div>
